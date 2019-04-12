@@ -37,12 +37,54 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="NQE-77-5P1">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="0pT-fP-xLU"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="0pT-fP-xLU">
+                            <connections>
+                                <segue destination="Sai-ap-0rJ" kind="show" id="wSj-AP-jR7"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1136.25" y="137.32394366197184"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="ru9-zH-2ee">
+            <objects>
+                <viewController id="Sai-ap-0rJ" customClass="MapViewController" customModule="MyWeather" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ykK-TJ-wZ9">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="nh1-oA-ZYq">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="5tn-2U-EcE" appends="YES" id="guj-Lq-yvh"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="nh1-oA-ZYq" firstAttribute="leading" secondItem="nLp-Xg-Nog" secondAttribute="leading" id="HT2-0g-4AO"/>
+                            <constraint firstItem="nLp-Xg-Nog" firstAttribute="trailing" secondItem="nh1-oA-ZYq" secondAttribute="trailing" id="aqb-3Z-56F"/>
+                            <constraint firstItem="nLp-Xg-Nog" firstAttribute="bottom" secondItem="nh1-oA-ZYq" secondAttribute="bottom" id="kbD-tP-szk"/>
+                            <constraint firstItem="nh1-oA-ZYq" firstAttribute="top" secondItem="nLp-Xg-Nog" secondAttribute="top" id="qnw-Yi-Ffq"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="nLp-Xg-Nog"/>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="nh1-oA-ZYq" id="4Kn-LE-bZF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H6H-O4-dBk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="5tn-2U-EcE">
+                    <connections>
+                        <action selector="longPressOnMapWithSender:" destination="Sai-ap-0rJ" id="cWS-hh-bPl"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1892" y="136"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ser-fS-XMa">
