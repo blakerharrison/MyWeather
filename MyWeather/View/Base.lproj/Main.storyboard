@@ -48,16 +48,20 @@
             </objects>
             <point key="canvasLocation" x="1136.25" y="137.32394366197184"/>
         </scene>
-        <!--View Controller-->
+        <!--Map View Controller-->
         <scene sceneID="ru9-zH-2ee">
             <objects>
-                <viewController id="Sai-ap-0rJ" sceneMemberID="viewController">
+                <viewController id="Sai-ap-0rJ" customClass="MapViewController" customModule="MyWeather" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ykK-TJ-wZ9">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="nh1-oA-ZYq">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="5tn-2U-EcE" appends="YES" id="guj-Lq-yvh"/>
+                                </connections>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -71,6 +75,11 @@
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H6H-O4-dBk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="5tn-2U-EcE">
+                    <connections>
+                        <action selector="longPressOnMapWithSender:" destination="Sai-ap-0rJ" id="cWS-hh-bPl"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1892" y="136"/>
         </scene>
