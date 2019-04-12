@@ -17,7 +17,6 @@ class MapViewController: UIViewController {
     //MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     
     //MARK: Methods
@@ -38,8 +37,6 @@ class MapViewController: UIViewController {
         self.present(alert, animated: true)
     }
     
-    
-
     //MARK: Actions
     @IBAction func longPressOnMap(sender: UILongPressGestureRecognizer) {
 
