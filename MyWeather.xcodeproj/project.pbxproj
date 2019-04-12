@@ -13,6 +13,7 @@
 		2C619D6E2260FED7008F4718 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C619D6D2260FED7008F4718 /* Assets.xcassets */; };
 		2C619D712260FED7008F4718 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C619D6F2260FED7008F4718 /* LaunchScreen.storyboard */; };
 		2C619D7C2260FED8008F4718 /* MyWeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C619D7B2260FED8008F4718 /* MyWeatherTests.swift */; };
+		2CABE979226128000059111C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CABE978226128000059111C /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		2C619D772260FED8008F4718 /* MyWeatherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyWeatherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C619D7B2260FED8008F4718 /* MyWeatherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWeatherTests.swift; sourceTree = "<group>"; };
 		2C619D7D2260FED8008F4718 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2CABE978226128000059111C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CABE979226128000059111C /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +65,7 @@
 				2C619D652260FED6008F4718 /* MyWeather */,
 				2C619D7A2260FED8008F4718 /* MyWeatherTests */,
 				2C619D642260FED6008F4718 /* Products */,
+				2CABE977226127FF0059111C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -94,6 +98,14 @@
 				2C619D7D2260FED8008F4718 /* Info.plist */,
 			);
 			path = MyWeatherTests;
+			sourceTree = "<group>";
+		};
+		2CABE977226127FF0059111C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2CABE978226128000059111C /* MapKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
