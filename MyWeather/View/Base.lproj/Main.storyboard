@@ -73,6 +73,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nLp-Xg-Nog"/>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="nh1-oA-ZYq" id="4Kn-LE-bZF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H6H-O4-dBk" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="5tn-2U-EcE">

@@ -7,9 +7,13 @@
 //
 
 import UIKit
+import MapKit
 
 class MapViewController: UIViewController {
 
+    //MARK: Outlet
+    @IBOutlet weak var mapView: MKMapView!
+    
     //MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
