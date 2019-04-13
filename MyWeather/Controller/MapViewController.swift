@@ -23,7 +23,7 @@ class MapViewController: UIViewController {
     func placePin(latitude: CLLocationDegrees, longitude: CLLocationDegrees, cityName: String) {
         
         let alert = UIAlertController(title: "Add \(cityName)?", message: "It will be listed on your homescreen.", preferredStyle: .alert)
-
+        //Yes
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
             let annotation = MKPointAnnotation()
             let centerCoordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
@@ -31,7 +31,7 @@ class MapViewController: UIViewController {
             annotation.title = cityName
             self.mapView.addAnnotation(annotation)
         }))
-        
+        //No
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
         
         self.present(alert, animated: true)
