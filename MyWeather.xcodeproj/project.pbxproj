@@ -114,12 +114,12 @@
 		2C619D652260FED6008F4718 /* MyWeather */ = {
 			isa = PBXGroup;
 			children = (
-				2C3AD57522615A9B008FECF2 /* Networking */,
-				2CABE97D22612BBE0059111C /* Controller */,
+				2C1E2EAB22618977009546C9 /* Model */,
 				2CABE97E22612BE80059111C /* View */,
+				2CABE97D22612BBE0059111C /* Controller */,
+				2C3AD57522615A9B008FECF2 /* Networking */,
 				2C619D6D2260FED7008F4718 /* Assets.xcassets */,
 				2C619D722260FED7008F4718 /* Info.plist */,
-				2C1E2EAB22618977009546C9 /* Model */,
 			);
 			path = MyWeather;
 			sourceTree = "<group>";

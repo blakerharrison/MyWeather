@@ -12,11 +12,9 @@ import SwiftyJSON
 class WeatherAPI {
     
     //Mark: Properties
-
     fileprivate let apiKey = "7d31e50bac4b48240997df9bdbbbafc0"
     
     //MARK: GET Request
-
     func fetchCurrentWeather(latitude: Double, longitude: Double, measurmentSystem: String) {
         
         guard let url = weatherURL(latitude: String(latitude), longitude: String(longitude), measurmentSystem: measurmentSystem) else {
@@ -60,7 +58,6 @@ class WeatherAPI {
     }
     
     //MARK: Methods
-    
     func weatherURL(latitude: String, longitude: String, measurmentSystem: String)-> URL? {
         var components = URLComponents()
         

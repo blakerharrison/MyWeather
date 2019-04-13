@@ -10,6 +10,9 @@ import UIKit
 import MapKit
 
 class MapViewController: UIViewController {
+    
+    //MARK: Properties
+    let weatherAPI = WeatherAPI()
 
     //MARK: Outlet
     @IBOutlet weak var mapView: MKMapView!
@@ -22,16 +25,20 @@ class MapViewController: UIViewController {
     //MARK: Methods
     func placePin(latitude: CLLocationDegrees, longitude: CLLocationDegrees, cityName: String) {
         
-        let alert = UIAlertController(title: "Add \(cityName)?", message: "It will be listed on your homescreen.", preferredStyle: .alert)
-        //Yes
+        let alert = UIAlertController(title: "Bookmark \(cityName)?", message: "It will be listed on your homescreen.", preferredStyle: .alert)
+
+        //User clicks "Yes"
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
             let annotation = MKPointAnnotation()
             let centerCoordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
             annotation.coordinate = centerCoordinate
             annotation.title = cityName
             self.mapView.addAnnotation(annotation)
+            
+            self.weatherAPI.fetchCurrentWeather(latitude: latitude, longitude: longitude, measurmentSystem: UnitOfMeasurment.imperial)
         }))
-        //No
+        
+        //User clicks "No"
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
         
         self.present(alert, animated: true)
