@@ -29,13 +29,12 @@ class MapViewController: UIViewController {
 
         //User clicks "Yes"
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
+            self.weatherAPI.fetchCurrentWeather(latitude: latitude, longitude: longitude, measurmentSystem: UnitOfMeasurment.imperial)
             let annotation = MKPointAnnotation()
             let centerCoordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
             annotation.coordinate = centerCoordinate
             annotation.title = cityName
             self.mapView.addAnnotation(annotation)
-            
-            self.weatherAPI.fetchCurrentWeather(latitude: latitude, longitude: longitude, measurmentSystem: UnitOfMeasurment.imperial)
         }))
         
         //User clicks "No"
