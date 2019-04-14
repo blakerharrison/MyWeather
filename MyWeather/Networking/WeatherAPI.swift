@@ -54,6 +54,10 @@ class WeatherAPI {
             print(json["wind"]["deg"].int!)
             print(json["rain"]["1h"].float ?? 0.0)
             
+            DispatchQueue.main.async {
+                coreDataManager.saveBookmarkedLocation(name: json["name"].string!, id: json["id"].int!)
+            }
+
         }
         task.resume()
     }

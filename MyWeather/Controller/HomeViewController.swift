@@ -10,9 +10,6 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
-    //MARK: Properties
-    let coreDataManager = CoreDataManager()
-    
     //MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +18,8 @@ class HomeViewController: UIViewController {
         if coreDataManager.numberOfUsers() != nil {
             if coreDataManager.numberOfUsers()! == 0 { coreDataManager.createUser() }
         }
+        
+        coreDataManager.readBookmarks()
 
     }
     

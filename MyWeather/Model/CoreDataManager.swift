@@ -9,6 +9,8 @@
 import UIKit
 import CoreData
 
+let coreDataManager = CoreDataManager()
+
 class CoreDataManager {
     
     //MARK: Create
@@ -30,7 +32,51 @@ class CoreDataManager {
         }
     }
     
+    func saveBookmarkedLocation(name: String, id: Int) {
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let userFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+        
+        let user = try! managedContext.fetch(userFetch)
+        
+        let theUser: User = user.first as! User
+        
+        let theLocation = BookmarkedLocation(context: managedContext)
+        theLocation.id = Int64(id)
+        theLocation.name = name
+        
+        theUser.addToBookmarkedLocations(theLocation)
+        
+        //Save
+        do {
+            try managedContext.save()
+            print("Bookmark saved")
+        } catch {
+            print(error)
+        }
+    }
+    
     //MARK: Read
+    func readBookmarks() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let userFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+        
+        let user = try! managedContext.fetch(userFetch)
+        
+        let theUser: User = user.first as! User
+        
+        for item in theUser.bookmarkedLocations!.allObjects as! [BookmarkedLocation] {
+            
+            if item.name != nil { print(item.name!) }
+            
+            print(item.id)
+        }
+    }
+    
     func numberOfUsers()-> Int? {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return nil }
         
@@ -42,7 +88,7 @@ class CoreDataManager {
 
         return user.count
     }
-    
+
     //MARK: Delete
     func resetAllRecords(entity: String) {
 
@@ -56,4 +102,5 @@ class CoreDataManager {
             print ("There was an error.")
         }
     }
+
 }
