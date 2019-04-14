@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2C12C7D92262EA36001B2CFB /* MyWeather.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2C12C7D72262EA36001B2CFB /* MyWeather.xcdatamodeld */; };
+		2C12C7DB2262EE90001B2CFB /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C12C7DA2262EE90001B2CFB /* CoreDataManager.swift */; };
 		2C1E2EAA2261896F009546C9 /* UnitOfMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1E2EA92261896F009546C9 /* UnitOfMeasurement.swift */; };
 		2C3AD57422615A95008FECF2 /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3AD57322615A95008FECF2 /* WeatherAPI.swift */; };
 		2C619D672260FED6008F4718 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C619D662260FED6008F4718 /* AppDelegate.swift */; };
@@ -34,6 +35,7 @@
 
 /* Begin PBXFileReference section */
 		2C12C7D82262EA36001B2CFB /* MyWeather.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyWeather.xcdatamodel; sourceTree = "<group>"; };
+		2C12C7DA2262EE90001B2CFB /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		2C1E2EA92261896F009546C9 /* UnitOfMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UnitOfMeasurement.swift; path = ../UnitOfMeasurement.swift; sourceTree = "<group>"; };
 		2C3AD57322615A95008FECF2 /* WeatherAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAPI.swift; sourceTree = "<group>"; };
 		2C619D632260FED6008F4718 /* MyWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				2C1E2EA92261896F009546C9 /* UnitOfMeasurement.swift */,
+				2C12C7DA2262EE90001B2CFB /* CoreDataManager.swift */,
 				2C12C7D72262EA36001B2CFB /* MyWeather.xcdatamodeld */,
 			);
 			path = Model;
@@ -342,6 +345,7 @@
 				2C12C7D92262EA36001B2CFB /* MyWeather.xcdatamodeld in Sources */,
 				2CABE97B22612B290059111C /* MapViewController.swift in Sources */,
 				2C1E2EAA2261896F009546C9 /* UnitOfMeasurement.swift in Sources */,
+				2C12C7DB2262EE90001B2CFB /* CoreDataManager.swift in Sources */,
 				2C619D672260FED6008F4718 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

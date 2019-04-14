@@ -10,11 +10,18 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
-    //MARK: Life Cycle
+    //MARK: Properties
+    let coreDataManager = CoreDataManager()
     
+    //MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+//        coreDataManager.resetAllRecords(entity: "User")
+        
+        if coreDataManager.numberOfUsers() != nil {
+            if coreDataManager.numberOfUsers()! == 0 { coreDataManager.createUser() }
+        }
+
     }
     
 }
