@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, UITableViewDataSource {
+class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     //MARK: Properties
     var userBookmarks = [Bookmark]()
@@ -44,6 +44,24 @@ class HomeViewController: UIViewController, UITableViewDataSource {
         cell.textLabel!.text = userBookmarks[indexPath.row].name
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.tableView.deselectRow(at: indexPath, animated: true)
+        print("")
+        print(userBookmarks[indexPath.row].name)
+        print(userBookmarks[indexPath.row].id)
+    }
+
+    func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
+        let more = UITableViewRowAction(style: .normal, title: "Delete") { action, index in
+            self.userBookmarks.remove(at: editActionsForRowAt.row)
+            self.tableView.reloadData()
+        }
+        more.backgroundColor = .red
+
+        
+        return [more]
     }
     
 }
