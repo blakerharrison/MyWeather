@@ -17,7 +17,7 @@ class WeatherAPI {
     //MARK: GET Request
     func fetchCurrentWeather(latitude: Double, longitude: Double, measurmentSystem: String) {
         
-        guard let url = weatherURL(latitude: String(latitude), longitude: String(longitude), measurmentSystem: measurmentSystem) else {
+        guard let url = weatherLongLatURL(latitude: String(latitude), longitude: String(longitude), measurmentSystem: measurmentSystem) else {
             print("Url cannot be created.")
             return
         }
@@ -31,12 +31,56 @@ class WeatherAPI {
             
             
             if let httpResponse = response as? HTTPURLResponse {
+                guard httpResponse.statusCode != 400 else {
+                    print("Bad request")
+                    return
+                }
+                
                 guard httpResponse.statusCode != 404 else {
                     print("Page not found")
                     return
                 }
+            }
+            
+            print(data!)
+            
+            let json = JSON(data!)
+            
+            print(json["name"].string!)
+            print(json["id"].int!)
+            print(json["main"]["temp"].float!)
+            print(json["main"]["humidity"].int!)
+            print(json["wind"]["speed"].float!)
+            print(json["wind"]["deg"].int!)
+            print(json["rain"]["1h"].float ?? 0.0)
+            
+        }
+        task.resume()
+    }
+    
+    func fetchCurrentWeatherByID(id: Int, measurmentSystem: String) {
+        
+        guard let url = weatherIDURL(id: id, measurmentSystem: measurmentSystem) else {
+            print("Url cannot be created.")
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            
+            guard data != nil else {
+                print("Data could not be created")
+                return
+            }
+            
+            
+            if let httpResponse = response as? HTTPURLResponse {
                 guard httpResponse.statusCode != 400 else {
                     print("Bad request")
+                    return
+                }
+                
+                guard httpResponse.statusCode != 404 else {
+                    print("Page not found")
                     return
                 }
             }
@@ -58,7 +102,7 @@ class WeatherAPI {
     }
     
     //MARK: Methods
-    func weatherURL(latitude: String, longitude: String, measurmentSystem: String)-> URL? {
+    func weatherLongLatURL(latitude: String, longitude: String, measurmentSystem: String)-> URL? {
         var components = URLComponents()
         
         components.scheme = "https"
@@ -72,6 +116,22 @@ class WeatherAPI {
         
         components.queryItems = [queryLatitude, queryLongitude, queryAppId, queryUnits]
 
+        return components.url
+    }
+    
+    func weatherIDURL(id: Int, measurmentSystem: String)-> URL? {
+        var components = URLComponents()
+        
+        components.scheme = "https"
+        components.host = "api.openweathermap.org"
+        components.path = "/data/2.5/weather"
+        
+        let queryId = URLQueryItem(name: "id", value: String(id))
+        let queryAppId = URLQueryItem(name: "appid", value: apiKey)
+        let queryUnits = URLQueryItem(name: "units", value: measurmentSystem)
+        
+        components.queryItems = [queryId, queryAppId, queryUnits]
+        
         return components.url
     }
 }
