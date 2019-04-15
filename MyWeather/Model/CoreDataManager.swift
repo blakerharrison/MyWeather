@@ -72,9 +72,33 @@ class CoreDataManager {
         for item in theUser.bookmarkedLocations!.allObjects as! [BookmarkedLocation] {
             
             if item.name != nil { print(item.name!) }
-            
-            print(item.id)
+
         }
+    }
+    
+    func bookmarksArray()->[Bookmark]? {
+        var bookmarks = [Bookmark]()
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return nil }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let userFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+        
+        let user = try! managedContext.fetch(userFetch)
+        
+        let theUser: User = user.first as! User
+        
+        for item in theUser.bookmarkedLocations!.allObjects as! [BookmarkedLocation] {
+            
+            if item.name != nil { print(item.name!) }
+
+            bookmarks.append(Bookmark(name: item.name!, id: Int(item.id)))
+            
+        }
+        
+       let sortedBookmarks = bookmarks.sorted(by: { $0.name < $1.name })
+        
+        return sortedBookmarks
     }
     
     func numberOfUsers()-> Int? {
@@ -91,15 +115,37 @@ class CoreDataManager {
 
     //MARK: Delete
     func resetAllRecords(entity: String) {
-
-        let context = ( UIApplication.shared.delegate as! AppDelegate ).persistentContainer.viewContext
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
         let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
         do {
-            try context.execute(deleteRequest)
-            try context.save()
+            try managedContext.execute(deleteRequest)
+            try managedContext.save()
         } catch {
             print ("There was an error.")
+        }
+    }
+    
+    func deleteBookmark(id: Int) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let predicate = NSPredicate(format: "id == %@", NSNumber(value: id))
+        
+        let bookmarkedLocationFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "BookmarkedLocation")
+        
+        bookmarkedLocationFetch.predicate = predicate
+
+        do {
+            let location = try managedContext.fetch(bookmarkedLocationFetch) as! [NSManagedObject]
+            managedContext.delete(location[0])
+            try managedContext.save()
+
+            print("Deleted")
+            
+        } catch {
+            print(error)
         }
     }
 

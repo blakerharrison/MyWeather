@@ -86,8 +86,8 @@
 			children = (
 				2C1E2EA92261896F009546C9 /* UnitOfMeasurement.swift */,
 				2C12C7DA2262EE90001B2CFB /* CoreDataManager.swift */,
-				2C12C7D72262EA36001B2CFB /* MyWeather.xcdatamodeld */,
 				2C12C7DC2263017D001B2CFB /* Bookmark.swift */,
+				2C12C7D72262EA36001B2CFB /* MyWeather.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";

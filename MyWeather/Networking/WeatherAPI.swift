@@ -51,7 +51,7 @@ class WeatherAPI {
             print(json["main"]["temp"].float!)
             print(json["main"]["humidity"].int!)
             print(json["wind"]["speed"].float!)
-            print(json["wind"]["deg"].int!)
+            print(json["wind"]["deg"].int ?? 0)
             print(json["rain"]["1h"].float ?? 0.0)
             
             DispatchQueue.main.async {

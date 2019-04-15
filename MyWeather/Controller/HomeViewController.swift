@@ -12,6 +12,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     //MARK: Properties
     var userBookmarks = [Bookmark]()
+    var weatherAPI = WeatherAPI()
 
     //MARK: Outlets
     @IBOutlet weak var tableView: UITableView!
@@ -20,17 +21,24 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
 //        coreDataManager.resetAllRecords(entity: "User")
-        
-        userBookmarks.append(Bookmark(name: "Ogallala", id: 5698040))
-        userBookmarks.append(Bookmark(name: "Clinton County", id: 4989135))
-        userBookmarks.append(Bookmark(name: "Amarillo", id: 5516233))
-        
+//        coreDataManager.resetAllRecords(entity: "BookmarkedLocation")
+  
         //Create "User" entity if there is none.
         if coreDataManager.numberOfUsers() != nil {
             if coreDataManager.numberOfUsers()! == 0 { coreDataManager.createUser() }
         }
         
+        if CoreDataManager().bookmarksArray() != nil { userBookmarks = CoreDataManager().bookmarksArray()! }
+        
         coreDataManager.readBookmarks()
+        
+        print(userBookmarks)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        userBookmarks = CoreDataManager().bookmarksArray()!
+        self.tableView.reloadData()
+        
     }
     
     //MARK: TableView
@@ -48,20 +56,21 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
-        print("")
-        print(userBookmarks[indexPath.row].name)
-        print(userBookmarks[indexPath.row].id)
+
+        weatherAPI.fetchCurrentWeatherByID(id: userBookmarks[indexPath.row].id, measurmentSystem: UnitOfMeasurment.imperial)
+        
+        //TODO: Create segue to weather detail view.
     }
 
     func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
-        let more = UITableViewRowAction(style: .normal, title: "Delete") { action, index in
+        let delete = UITableViewRowAction(style: .normal, title: "Delete") { action, index in
+            CoreDataManager().deleteBookmark(id: self.userBookmarks[editActionsForRowAt.row].id)
             self.userBookmarks.remove(at: editActionsForRowAt.row)
             self.tableView.reloadData()
         }
-        more.backgroundColor = .red
+        delete.backgroundColor = .red
 
-        
-        return [more]
+        return [delete]
     }
     
 }
