@@ -45,12 +45,14 @@ class WeatherDetailViewController: UIViewController {
         print("Weather was fetched")
         print("")
         
+        print(self.weatherAPI.currentForcast.windDeg)
+        
         DispatchQueue.main.async {
-            self.currentTemperatureLabel.text = String(self.weatherAPI.currentForcast.temp) + "°"
+            self.currentTemperatureLabel.text = String(Int(self.weatherAPI.currentForcast.temp)) + "°"
             self.todaysDateLabel.text = String(self.weatherAPI.currentForcast.date)
-            self.currentHumidityLabel.text = String(self.weatherAPI.currentForcast.humidity)
+            self.currentHumidityLabel.text = String(self.weatherAPI.currentForcast.humidity) + "%"
             self.currentRainChancesLabel.text = String(self.weatherAPI.currentForcast.rain)
-            self.currentWindInformationLabel.text = String(self.weatherAPI.currentForcast.windSpeed) + " mph"
+            self.currentWindInformationLabel.text = String(Int(self.weatherAPI.currentForcast.windSpeed)) + " mph"
         }
     }
     
@@ -60,3 +62,4 @@ class WeatherDetailViewController: UIViewController {
 extension Notification.Name {
     static let CurrentWeatherFetched = NSNotification.Name("CurrentWeatherFetched")
 }
+
