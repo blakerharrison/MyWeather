@@ -28,10 +28,13 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         
         if CoreDataManager().bookmarksArray() != nil { userBookmarks = CoreDataManager().bookmarksArray()! }
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = .clear
         userBookmarks = CoreDataManager().bookmarksArray()!
         self.tableView.reloadData()
         
