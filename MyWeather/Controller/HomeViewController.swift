@@ -13,7 +13,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //MARK: Properties
     var userBookmarks = [Bookmark]()
     var weatherAPI = WeatherAPI()
-
+    var selectedIndex = 0
+    
     //MARK: Outlets
     @IBOutlet weak var tableView: UITableView!
     
@@ -36,6 +37,14 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let weatherDetailViewController = segue.destination as? WeatherDetailViewController else {
+                return
+        }
+        weatherDetailViewController.selectedBookmark.name = userBookmarks[selectedIndex].name
+        weatherDetailViewController.selectedBookmark.id = userBookmarks[selectedIndex].id
+    }
+    
     //MARK: TableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return userBookmarks.count
@@ -51,8 +60,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
-
-        weatherAPI.fetchCurrentWeatherByID(id: userBookmarks[indexPath.row].id, measurmentSystem: UnitOfMeasurment.imperial)
+        selectedIndex = indexPath.row
         
         performSegue(withIdentifier: "weatherDetailSegue", sender: self)
     }
