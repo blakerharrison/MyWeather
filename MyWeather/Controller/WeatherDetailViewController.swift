@@ -27,7 +27,7 @@ class WeatherDetailViewController: UIViewController {
     //MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         NotificationCenter.default.addObserver(self, selector: #selector(LoadForcast(_:)), name: .CurrentWeatherFetched, object: nil)
         
         locationNameLabel.text = selectedBookmark.name
@@ -47,16 +47,18 @@ class WeatherDetailViewController: UIViewController {
         
         print(self.weatherAPI.currentForcast.windDeg)
         
+        let windDirection = self.weatherAPI.currentForcast.windDeg.degreesToWindDirection
+        let dateString = self.weatherAPI.currentForcast.date.unixTimestampToMonthAndDayString
+        
         DispatchQueue.main.async {
             self.currentTemperatureLabel.text = String(Int(self.weatherAPI.currentForcast.temp)) + "°"
-            self.todaysDateLabel.text = String(self.weatherAPI.currentForcast.date)
+            self.todaysDateLabel.text = dateString
             self.currentHumidityLabel.text = String(self.weatherAPI.currentForcast.humidity) + "%"
-            self.currentRainChancesLabel.text = String(self.weatherAPI.currentForcast.rain)
-            self.currentWindInformationLabel.text = String(Int(self.weatherAPI.currentForcast.windSpeed)) + " mph"
+            self.currentRainChancesLabel.text = String(self.weatherAPI.currentForcast.rain) + " mm"
+            self.currentWindInformationLabel.text = windDirection + " " + String(Int(self.weatherAPI.currentForcast.windSpeed)) + " mph"
         }
     }
-    
-    
+
 }
 
 extension Notification.Name {

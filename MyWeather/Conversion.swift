@@ -1,5 +1,5 @@
 //
-//  Conversions.swift
+//  Conversion.swift
 //  MyWeather
 //
 //  Created by Blake Harrison on 4/15/19.
@@ -9,6 +9,7 @@
 import Foundation
 
 extension Int {
+    
     var degreesToWindDirection: String {
         
         if self == 0 || self == 360 {
@@ -76,5 +77,16 @@ extension Int {
         }
         
         return ""
+    }
+    
+    var unixTimestampToMonthAndDayString: String {
+        
+        let date = Date()
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE, MMMM d"
+        let dateString = dateFormatter.string(from:date)
+        
+        return dateString
     }
 }
