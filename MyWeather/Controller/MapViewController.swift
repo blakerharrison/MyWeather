@@ -59,9 +59,16 @@ class MapViewController: UIViewController {
                 let errorString = error?.localizedDescription ?? "Error"
                 print("Given location is not retrievable. Descripton: \(errorString)")
                 return
-            }
+            } 
 
-            let cityName = placemark.locality ?? "\(locationCoordinate.latitude), \(locationCoordinate.longitude)"
+            let cityName = placemark.locality ?? " "
+            
+            guard cityName != " " else {
+                let alert = UIAlertController(title: "No results found", message: "Try another location.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+                self.present(alert, animated: true)
+                return
+            }
 
             self.placePin(latitude: locationCoordinate.latitude, longitude: locationCoordinate.longitude, cityName: cityName)
         }
