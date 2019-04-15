@@ -23,6 +23,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewDidLoad()
         
         navigationItem.title = "MyWeather"
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
 
         //Create "User" entity if there is none.
         if coreDataManager.numberOfUsers() != nil {
