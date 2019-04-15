@@ -29,8 +29,6 @@ class WeatherDetailViewController: UIViewController {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(LoadForcast(_:)), name: .CurrentWeatherFetched, object: nil)
         locationNameLabel.text = selectedBookmark.name
-        
-        navigationItem.title = selectedBookmark.name
     }
     
     override func viewWillAppear(_ animated: Bool) {
