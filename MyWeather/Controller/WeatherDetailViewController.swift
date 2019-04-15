@@ -27,12 +27,8 @@ class WeatherDetailViewController: UIViewController {
     //MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
         NotificationCenter.default.addObserver(self, selector: #selector(LoadForcast(_:)), name: .CurrentWeatherFetched, object: nil)
-        
         locationNameLabel.text = selectedBookmark.name
-        print("THIS IS THE ID - \(selectedBookmark.id)")
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,12 +37,7 @@ class WeatherDetailViewController: UIViewController {
     
     //MARK: Methods
     @objc func LoadForcast(_ notification: Notification) {
-        print("")
-        print("Weather was fetched")
-        print("")
-        
-        print(self.weatherAPI.currentForcast.windDeg)
-        
+
         let windDirection = self.weatherAPI.currentForcast.windDeg.degreesToWindDirection
         let dateString = self.weatherAPI.currentForcast.date.unixTimestampToMonthAndDayString
         
