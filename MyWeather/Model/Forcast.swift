@@ -16,4 +16,5 @@ struct Forcast {
     var windSpeed: Float
     var windDeg: Int
     var rain: Float
+    var date: Int
 }
