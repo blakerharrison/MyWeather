@@ -91,6 +91,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="NQE-77-5P1">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="0pT-fP-xLU">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <segue destination="Sai-ap-0rJ" kind="show" id="wSj-AP-jR7"/>
                             </connections>
@@ -113,6 +114,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CloudImage" translatesAutoresizingMaskIntoConstraints="NO" id="rpe-1y-iSa">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                            </imageView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dxw-o2-Xx9">
+                                <rect key="frame" x="0.0" y="7" width="375" height="805"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="VtH-pE-qOp">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="805"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <blurEffect style="dark"/>
+                            </visualEffectView>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="nh1-oA-ZYq">
                                 <rect key="frame" x="0.0" y="88" width="375" height="690"/>
                                 <gestureRecognizers/>
@@ -123,10 +135,18 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Dxw-o2-Xx9" firstAttribute="top" secondItem="nLp-Xg-Nog" secondAttribute="top" constant="-81" id="BOE-9h-O9T"/>
                             <constraint firstItem="nh1-oA-ZYq" firstAttribute="leading" secondItem="nLp-Xg-Nog" secondAttribute="leading" id="HT2-0g-4AO"/>
+                            <constraint firstAttribute="bottom" secondItem="rpe-1y-iSa" secondAttribute="bottom" id="O7U-U2-cMQ"/>
+                            <constraint firstItem="rpe-1y-iSa" firstAttribute="top" secondItem="nLp-Xg-Nog" secondAttribute="top" constant="-88" id="S3D-Xf-lrm"/>
+                            <constraint firstItem="nLp-Xg-Nog" firstAttribute="trailing" secondItem="Dxw-o2-Xx9" secondAttribute="trailing" id="UfF-LO-WHK"/>
                             <constraint firstItem="nLp-Xg-Nog" firstAttribute="trailing" secondItem="nh1-oA-ZYq" secondAttribute="trailing" id="aqb-3Z-56F"/>
+                            <constraint firstItem="rpe-1y-iSa" firstAttribute="leading" secondItem="nLp-Xg-Nog" secondAttribute="leading" id="b38-qO-M7C"/>
+                            <constraint firstItem="Dxw-o2-Xx9" firstAttribute="leading" secondItem="nLp-Xg-Nog" secondAttribute="leading" id="ePp-XD-pEV"/>
                             <constraint firstItem="nLp-Xg-Nog" firstAttribute="bottom" secondItem="nh1-oA-ZYq" secondAttribute="bottom" id="kbD-tP-szk"/>
                             <constraint firstItem="nh1-oA-ZYq" firstAttribute="top" secondItem="nLp-Xg-Nog" secondAttribute="top" id="qnw-Yi-Ffq"/>
+                            <constraint firstItem="nLp-Xg-Nog" firstAttribute="trailing" secondItem="rpe-1y-iSa" secondAttribute="trailing" id="sMk-lN-pKM"/>
+                            <constraint firstItem="nLp-Xg-Nog" firstAttribute="bottom" secondItem="Dxw-o2-Xx9" secondAttribute="bottom" constant="-34" id="t8v-Q2-ZJ4"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nLp-Xg-Nog"/>
                     </view>
@@ -141,7 +161,7 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1958" y="-174"/>
+            <point key="canvasLocation" x="1957.5999999999999" y="-174.38423645320196"/>
         </scene>
         <!--Weather Detail View Controller-->
         <scene sceneID="TuO-xa-Lxv">
@@ -156,7 +176,7 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="btg-UI-zhE">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="115"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="Symbol" family="Symbol" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -223,6 +243,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="sZ8-p0-pDI">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="Symbol" family="Symbol" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -237,4 +261,5 @@
     <resources>
         <image name="CloudImage" width="1200" height="800"/>
     </resources>
+    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

@@ -21,6 +21,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.title = "MyWeather"
 
         //Create "User" entity if there is none.
         if coreDataManager.numberOfUsers() != nil {
@@ -56,6 +58,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
+        cell.textLabel!.textColor = .white
+        cell.textLabel!.font = UIFont(name:"Symbol", size: 33.0)
         cell.textLabel!.text = userBookmarks[indexPath.row].name
         
         return cell

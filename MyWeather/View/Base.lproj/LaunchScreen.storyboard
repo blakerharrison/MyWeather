@@ -28,8 +28,8 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MyWeather" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ah0-3j-QyX">
-                                            <rect key="frame" x="58.5" y="289" width="203.5" height="48"/>
-                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="40"/>
+                                            <rect key="frame" x="71" y="295.5" width="178.5" height="35"/>
+                                            <fontDescription key="fontDescription" name="Symbol" family="Symbol" pointSize="35"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                             <size key="shadowOffset" width="-1" height="2"/>
