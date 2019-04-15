@@ -59,6 +59,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="6Qy-yB-gRU" id="sSK-y3-QUc"/>
+                        <segue destination="M0T-Pu-ke1" kind="show" identifier="weatherDetailSegue" id="gHZ-OF-upb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -101,7 +102,22 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1892" y="136"/>
+            <point key="canvasLocation" x="1958" y="-174"/>
+        </scene>
+        <!--Weather Detail View Controller-->
+        <scene sceneID="TuO-xa-Lxv">
+            <objects>
+                <viewController id="M0T-Pu-ke1" customClass="WeatherDetailViewController" customModule="MyWeather" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="EoC-ul-IRp">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="xTe-Wy-UyG"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WuJ-Fv-dAP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1958" y="500"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ser-fS-XMa">

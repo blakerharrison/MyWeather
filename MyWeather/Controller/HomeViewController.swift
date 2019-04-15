@@ -20,19 +20,14 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-//        coreDataManager.resetAllRecords(entity: "User")
-//        coreDataManager.resetAllRecords(entity: "BookmarkedLocation")
-  
+
         //Create "User" entity if there is none.
         if coreDataManager.numberOfUsers() != nil {
             if coreDataManager.numberOfUsers()! == 0 { coreDataManager.createUser() }
         }
         
         if CoreDataManager().bookmarksArray() != nil { userBookmarks = CoreDataManager().bookmarksArray()! }
-        
-        coreDataManager.readBookmarks()
-        
-        print(userBookmarks)
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,7 +54,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
         weatherAPI.fetchCurrentWeatherByID(id: userBookmarks[indexPath.row].id, measurmentSystem: UnitOfMeasurment.imperial)
         
-        //TODO: Create segue to weather detail view.
+        performSegue(withIdentifier: "weatherDetailSegue", sender: self)
     }
 
     func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
