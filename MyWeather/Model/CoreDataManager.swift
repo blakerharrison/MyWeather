@@ -89,8 +89,6 @@ class CoreDataManager {
         let theUser: User = user.first as! User
         
         for item in theUser.bookmarkedLocations!.allObjects as! [BookmarkedLocation] {
-            
-            if item.name != nil { print(item.name!) }
 
             bookmarks.append(Bookmark(name: item.name!, id: Int(item.id)))
             

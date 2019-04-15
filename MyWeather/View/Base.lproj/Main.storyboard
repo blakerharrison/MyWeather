@@ -59,6 +59,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="6Qy-yB-gRU" id="sSK-y3-QUc"/>
+                        <segue destination="M0T-Pu-ke1" kind="show" identifier="weatherDetailSegue" id="gHZ-OF-upb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -101,7 +102,79 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1892" y="136"/>
+            <point key="canvasLocation" x="1958" y="-174"/>
+        </scene>
+        <!--Weather Detail View Controller-->
+        <scene sceneID="TuO-xa-Lxv">
+            <objects>
+                <viewController id="M0T-Pu-ke1" customClass="WeatherDetailViewController" customModule="MyWeather" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="EoC-ul-IRp">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="jue-i7-HdS">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="btg-UI-zhE">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="84"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5qp-uc-gzs">
+                                        <rect key="frame" x="0.0" y="84" width="320" height="84"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temperature" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BZt-L3-eDM">
+                                        <rect key="frame" x="0.0" y="168" width="320" height="84"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Humidity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4lq-t3-Mu6">
+                                        <rect key="frame" x="0.0" y="252" width="320" height="84"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rain Chance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KOa-Ul-JAD">
+                                        <rect key="frame" x="0.0" y="336" width="320" height="84"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wind Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pix-Dm-a0j">
+                                        <rect key="frame" x="0.0" y="420" width="320" height="84"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="xTe-Wy-UyG" firstAttribute="trailing" secondItem="jue-i7-HdS" secondAttribute="trailing" id="UlR-AQ-waQ"/>
+                            <constraint firstItem="jue-i7-HdS" firstAttribute="leading" secondItem="xTe-Wy-UyG" secondAttribute="leading" id="d8B-0c-Z5o"/>
+                            <constraint firstItem="xTe-Wy-UyG" firstAttribute="bottom" secondItem="jue-i7-HdS" secondAttribute="bottom" id="qxE-vr-43P"/>
+                            <constraint firstItem="jue-i7-HdS" firstAttribute="top" secondItem="xTe-Wy-UyG" secondAttribute="top" id="y6z-e3-K3R"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="xTe-Wy-UyG"/>
+                    </view>
+                    <connections>
+                        <outlet property="currentHumidityLabel" destination="4lq-t3-Mu6" id="bfW-dU-kYc"/>
+                        <outlet property="currentRainChancesLabel" destination="KOa-Ul-JAD" id="m0Z-qp-3TG"/>
+                        <outlet property="currentTemperatureLabel" destination="BZt-L3-eDM" id="gIi-b4-JrG"/>
+                        <outlet property="currentWindInformationLabel" destination="Pix-Dm-a0j" id="aJJ-5J-FMw"/>
+                        <outlet property="locationNameLabel" destination="btg-UI-zhE" id="o4S-8a-dnC"/>
+                        <outlet property="todaysDateLabel" destination="5qp-uc-gzs" id="zY5-CK-hZo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WuJ-Fv-dAP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1958" y="500"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ser-fS-XMa">

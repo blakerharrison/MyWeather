@@ -13,32 +13,36 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //MARK: Properties
     var userBookmarks = [Bookmark]()
     var weatherAPI = WeatherAPI()
-
+    var selectedIndex = 0
+    
     //MARK: Outlets
     @IBOutlet weak var tableView: UITableView!
     
     //MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-//        coreDataManager.resetAllRecords(entity: "User")
-//        coreDataManager.resetAllRecords(entity: "BookmarkedLocation")
-  
+
         //Create "User" entity if there is none.
         if coreDataManager.numberOfUsers() != nil {
             if coreDataManager.numberOfUsers()! == 0 { coreDataManager.createUser() }
         }
         
         if CoreDataManager().bookmarksArray() != nil { userBookmarks = CoreDataManager().bookmarksArray()! }
-        
-        coreDataManager.readBookmarks()
-        
-        print(userBookmarks)
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
         userBookmarks = CoreDataManager().bookmarksArray()!
         self.tableView.reloadData()
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let weatherDetailViewController = segue.destination as? WeatherDetailViewController else {
+                return
+        }
+        weatherDetailViewController.selectedBookmark.name = userBookmarks[selectedIndex].name
+        weatherDetailViewController.selectedBookmark.id = userBookmarks[selectedIndex].id
     }
     
     //MARK: TableView
@@ -56,10 +60,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
-
-        weatherAPI.fetchCurrentWeatherByID(id: userBookmarks[indexPath.row].id, measurmentSystem: UnitOfMeasurment.imperial)
+        selectedIndex = indexPath.row
         
-        //TODO: Create segue to weather detail view.
+        performSegue(withIdentifier: "weatherDetailSegue", sender: self)
     }
 
     func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {

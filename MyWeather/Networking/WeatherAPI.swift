@@ -14,6 +14,8 @@ class WeatherAPI {
     //Mark: Properties
     fileprivate let apiKey = "7d31e50bac4b48240997df9bdbbbafc0"
     
+    var currentForcast = Forcast(name: "", id: 0, temp: 0.0, humidity: 0, windSpeed: 0.0, windDeg: 0, rain: 0.0, date: 0)
+    
     //MARK: GET Request
     func fetchCurrentWeather(latitude: Double, longitude: Double, measurmentSystem: String) {
         
@@ -93,13 +95,16 @@ class WeatherAPI {
             
             let json = JSON(data!)
             
-            print(json["name"].string!)
-            print(json["id"].int!)
-            print(json["main"]["temp"].float!)
-            print(json["main"]["humidity"].int!)
-            print(json["wind"]["speed"].float!)
-            print(json["wind"]["deg"].int!)
-            print(json["rain"]["1h"].float ?? 0.0)
+            self.currentForcast.name = json["name"].string!
+            self.currentForcast.id = json["id"].int!
+            self.currentForcast.temp = json["main"]["temp"].float!
+            self.currentForcast.humidity = json["main"]["humidity"].int!
+            self.currentForcast.windSpeed = json["wind"]["speed"].float ?? 0.0
+            self.currentForcast.windDeg = json["wind"]["deg"].int ?? 0
+            self.currentForcast.rain = json["rain"]["1h"].float ?? 0.0
+            self.currentForcast.date = json["dt"].int ?? 0
+
+            NotificationCenter.default.post(name: NSNotification.Name.CurrentWeatherFetched, object: nil)
             
         }
         task.resume()
