@@ -21,6 +21,8 @@ class MapViewController: UIViewController {
     //MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Hold to bookmark location"
+        
         activityView.isHidden = true
         activityView.style = .gray
     }
