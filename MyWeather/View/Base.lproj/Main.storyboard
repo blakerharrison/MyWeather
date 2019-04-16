@@ -256,10 +256,14 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="jiS-19-5d2">
+                                            <rect key="frame" x="141.5" y="282.5" width="37" height="37"/>
+                                        </activityIndicatorView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="KOa-Ul-JAD" firstAttribute="centerX" secondItem="CuG-dL-S21" secondAttribute="centerX" id="2Xb-7K-kmq"/>
                                         <constraint firstItem="RSn-ri-H7F" firstAttribute="leading" secondItem="CuG-dL-S21" secondAttribute="trailing" constant="13" id="2hp-cg-ice"/>
+                                        <constraint firstItem="jiS-19-5d2" firstAttribute="centerY" secondItem="R7t-TH-zzM" secondAttribute="centerY" id="439-dw-4w9"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="5qp-uc-gzs" secondAttribute="trailing" constant="8" id="4bb-bX-lgr"/>
                                         <constraint firstItem="KOa-Ul-JAD" firstAttribute="leading" secondItem="4lq-t3-Mu6" secondAttribute="trailing" constant="8" symbolic="YES" id="5Ub-OP-eCc"/>
                                         <constraint firstItem="KOa-Ul-JAD" firstAttribute="leading" secondItem="CuG-dL-S21" secondAttribute="leading" id="5yf-Ff-sB3"/>
@@ -278,6 +282,7 @@
                                         <constraint firstItem="hPa-4b-njZ" firstAttribute="leading" secondItem="R7t-TH-zzM" secondAttribute="leading" constant="44" id="cPf-5o-5sf"/>
                                         <constraint firstItem="btg-UI-zhE" firstAttribute="top" secondItem="BZt-L3-eDM" secondAttribute="bottom" constant="2" id="kow-W9-VlJ"/>
                                         <constraint firstItem="CuG-dL-S21" firstAttribute="top" secondItem="BZt-L3-eDM" secondAttribute="bottom" constant="64" id="qne-ju-DqM"/>
+                                        <constraint firstItem="jiS-19-5d2" firstAttribute="centerX" secondItem="R7t-TH-zzM" secondAttribute="centerX" id="vfI-VY-1t7"/>
                                         <constraint firstItem="BZt-L3-eDM" firstAttribute="top" secondItem="R7t-TH-zzM" secondAttribute="top" constant="124" id="zmZ-6Q-Wxh"/>
                                         <constraint firstItem="4lq-t3-Mu6" firstAttribute="leading" secondItem="hPa-4b-njZ" secondAttribute="leading" id="zy7-YE-Hlw"/>
                                     </constraints>
@@ -299,6 +304,7 @@
                         <viewLayoutGuide key="safeArea" id="xTe-Wy-UyG"/>
                     </view>
                     <connections>
+                        <outlet property="activityView" destination="jiS-19-5d2" id="FVo-yE-gPP"/>
                         <outlet property="currentHumidityLabel" destination="4lq-t3-Mu6" id="bfW-dU-kYc"/>
                         <outlet property="currentRainChancesLabel" destination="KOa-Ul-JAD" id="m0Z-qp-3TG"/>
                         <outlet property="currentTemperatureLabel" destination="BZt-L3-eDM" id="gIi-b4-JrG"/>
