@@ -46,31 +46,20 @@ class MapViewController: UIViewController {
     //MARK: Actions
     @IBAction func longPressOnMap(sender: UILongPressGestureRecognizer) {
 
-        if sender.state != UIGestureRecognizer.State.began { return }
-        let touchLocation = sender.location(in: mapView)
-        let locationCoordinate = mapView.convert(touchLocation, toCoordinateFrom: mapView)
-        print("Tapped at lat: \(locationCoordinate.latitude) long: \(locationCoordinate.longitude)")
-        
-        let location = CLLocation(latitude: locationCoordinate.latitude, longitude: locationCoordinate.longitude)
+            if sender.state != UIGestureRecognizer.State.began { return }
+            let touchLocation = sender.location(in: self.mapView)
+            let locationCoordinate = self.mapView.convert(touchLocation, toCoordinateFrom: self.mapView)
 
-        CLGeocoder().reverseGeocodeLocation(location) { placemarks, error in
-
-            guard let placemark = placemarks?.first else {
-                let errorString = error?.localizedDescription ?? "Error"
-                print("Given location is not retrievable. Descripton: \(errorString)")
-                return
-            } 
-
-            let cityName = placemark.locality ?? " "
-            
-            guard cityName != " " else {
-                let alert = UIAlertController(title: "No results found", message: "Try another location.", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
-                self.present(alert, animated: true)
-                return
-            }
-
-            self.placePin(latitude: locationCoordinate.latitude, longitude: locationCoordinate.longitude, cityName: cityName)
-        }
+            self.weatherAPI.getCurrentLocationName(latitude: locationCoordinate.latitude, longitude: locationCoordinate.longitude, measurmentSystem: UnitOfMeasurment.imperial, completion: { (name) in
+ 
+                guard name != "" else {
+                    let alert = UIAlertController(title: "No results found", message: "Try another location.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+                    self.present(alert, animated: true)
+                    return
+                }
+                
+                self.placePin(latitude: locationCoordinate.latitude, longitude: locationCoordinate.longitude, cityName: name)
+            })
     }
 }
