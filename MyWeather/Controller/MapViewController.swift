@@ -16,15 +16,21 @@ class MapViewController: UIViewController {
 
     //MARK: Outlet
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var activityView: UIActivityIndicatorView!
     
     //MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+//
+        activityView.isHidden = true
+//        activityView.stopAnimating()
+
+        activityView.style = .gray
     }
     
     //MARK: Methods
     func placePin(latitude: CLLocationDegrees, longitude: CLLocationDegrees, cityName: String) {
-        
+
         let alert = UIAlertController(title: "Bookmark \(cityName)?", message: "It will be listed on your homescreen.", preferredStyle: .alert)
 
         //User clicks "Yes"
@@ -35,10 +41,18 @@ class MapViewController: UIViewController {
             annotation.coordinate = centerCoordinate
             annotation.title = cityName
             self.mapView.addAnnotation(annotation)
+            self.activityView.isHidden = true
+            self.activityView.stopAnimating()
         }))
         
         //User clicks "No"
-        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: { action in
+            self.activityView.isHidden = true
+            self.activityView.stopAnimating()
+        }))
+        
+        self.activityView.isHidden = true
+        self.activityView.stopAnimating()
         
         self.present(alert, animated: true)
     }
@@ -46,20 +60,31 @@ class MapViewController: UIViewController {
     //MARK: Actions
     @IBAction func longPressOnMap(sender: UILongPressGestureRecognizer) {
 
-            if sender.state != UIGestureRecognizer.State.began { return }
-            let touchLocation = sender.location(in: self.mapView)
-            let locationCoordinate = self.mapView.convert(touchLocation, toCoordinateFrom: self.mapView)
+        activityView.isHidden = false
+        activityView.startAnimating()
+        
+        if sender.state != UIGestureRecognizer.State.began { return }
+        let touchLocation = sender.location(in: self.mapView)
+        let locationCoordinate = self.mapView.convert(touchLocation, toCoordinateFrom: self.mapView)
 
-            self.weatherAPI.getCurrentLocationName(latitude: locationCoordinate.latitude, longitude: locationCoordinate.longitude, measurmentSystem: UnitOfMeasurment.imperial, completion: { (name) in
+        self.weatherAPI.getCurrentLocationName(latitude: locationCoordinate.latitude, longitude: locationCoordinate.longitude, measurmentSystem: UnitOfMeasurment.imperial, completion: { (name) in
+
+            guard name != "" else {
+                self.activityView.isHidden = true
+                self.activityView.stopAnimating()
+                let alert = UIAlertController(title: "No results found", message: "Try another location.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: { action in
+                    self.activityView.isHidden = true
+                    self.activityView.stopAnimating()
+                }))
+                self.present(alert, animated: true)
+                return
+            }
+            
+            self.activityView.isHidden = true
+            self.activityView.stopAnimating()
  
-                guard name != "" else {
-                    let alert = UIAlertController(title: "No results found", message: "Try another location.", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
-                    self.present(alert, animated: true)
-                    return
-                }
-                
-                self.placePin(latitude: locationCoordinate.latitude, longitude: locationCoordinate.longitude, cityName: name)
-            })
+            self.placePin(latitude: locationCoordinate.latitude, longitude: locationCoordinate.longitude, cityName: name)
+        })
     }
 }

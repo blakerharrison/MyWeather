@@ -132,9 +132,13 @@
                                     <outletCollection property="gestureRecognizers" destination="5tn-2U-EcE" appends="YES" id="guj-Lq-yvh"/>
                                 </connections>
                             </mapView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="NlM-iB-EZ7">
+                                <rect key="frame" x="141.5" y="265.5" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="NlM-iB-EZ7" firstAttribute="centerX" secondItem="ykK-TJ-wZ9" secondAttribute="centerX" id="6FM-xq-M0a"/>
                             <constraint firstItem="Dxw-o2-Xx9" firstAttribute="top" secondItem="nLp-Xg-Nog" secondAttribute="top" constant="-81" id="BOE-9h-O9T"/>
                             <constraint firstItem="nh1-oA-ZYq" firstAttribute="leading" secondItem="nLp-Xg-Nog" secondAttribute="leading" id="HT2-0g-4AO"/>
                             <constraint firstAttribute="bottom" secondItem="rpe-1y-iSa" secondAttribute="bottom" id="O7U-U2-cMQ"/>
@@ -147,10 +151,12 @@
                             <constraint firstItem="nh1-oA-ZYq" firstAttribute="top" secondItem="nLp-Xg-Nog" secondAttribute="top" id="qnw-Yi-Ffq"/>
                             <constraint firstItem="nLp-Xg-Nog" firstAttribute="trailing" secondItem="rpe-1y-iSa" secondAttribute="trailing" id="sMk-lN-pKM"/>
                             <constraint firstItem="nLp-Xg-Nog" firstAttribute="bottom" secondItem="Dxw-o2-Xx9" secondAttribute="bottom" constant="-34" id="t8v-Q2-ZJ4"/>
+                            <constraint firstItem="NlM-iB-EZ7" firstAttribute="centerY" secondItem="ykK-TJ-wZ9" secondAttribute="centerY" id="wwN-Q3-pwq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nLp-Xg-Nog"/>
                     </view>
                     <connections>
+                        <outlet property="activityView" destination="NlM-iB-EZ7" id="aVF-vB-yWb"/>
                         <outlet property="mapView" destination="nh1-oA-ZYq" id="4Kn-LE-bZF"/>
                     </connections>
                 </viewController>
