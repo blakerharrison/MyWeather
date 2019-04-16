@@ -21,6 +21,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.title = "MyWeather"
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
 
         //Create "User" entity if there is none.
         if coreDataManager.numberOfUsers() != nil {
@@ -28,10 +31,13 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         
         if CoreDataManager().bookmarksArray() != nil { userBookmarks = CoreDataManager().bookmarksArray()! }
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = .clear
         userBookmarks = CoreDataManager().bookmarksArray()!
         self.tableView.reloadData()
         
@@ -53,6 +59,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
+        cell.textLabel!.textColor = .white
+        cell.textLabel!.font = UIFont(name:"Symbol", size: 33.0)
         cell.textLabel!.text = userBookmarks[indexPath.row].name
         
         return cell

@@ -110,6 +110,51 @@ class WeatherAPI {
         task.resume()
     }
     
+    //TODO C
+    func getCurrentLocationName(latitude: Double, longitude: Double, measurmentSystem: String, completion: @escaping (String) -> ()) {
+        
+        guard let url = weatherLongLatURL(latitude: String(latitude), longitude: String(longitude), measurmentSystem: measurmentSystem) else {
+            print("Url cannot be created.")
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            
+            guard data != nil else {
+                print("Data could not be created")
+                return
+            }
+            
+            
+            if let httpResponse = response as? HTTPURLResponse {
+                guard httpResponse.statusCode != 400 else {
+                    print("Bad request")
+                    return
+                }
+                
+                guard httpResponse.statusCode != 404 else {
+                    print("Page not found")
+                    return
+                }
+            }
+            
+            print(data!)
+            
+            let json = JSON(data!)
+            
+            print(json["name"].string!)
+            
+            let name = json["name"].string!
+            
+            DispatchQueue.main.async {
+                completion(name)
+            }
+            
+            
+        }
+        task.resume()
+    }
+    
     //MARK: Methods
     func weatherLongLatURL(latitude: String, longitude: String, measurmentSystem: String)-> URL? {
         var components = URLComponents()
