@@ -23,10 +23,12 @@ class WeatherDetailViewController: UIViewController {
     @IBOutlet weak var currentHumidityLabel: UILabel!
     @IBOutlet weak var currentRainChancesLabel: UILabel!
     @IBOutlet weak var currentWindInformationLabel: UILabel!
+    @IBOutlet weak var activityView: UIActivityIndicatorView!
     
     //MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        activityView.startAnimating()
         NotificationCenter.default.addObserver(self, selector: #selector(LoadForcast(_:)), name: .CurrentWeatherFetched, object: nil)
         locationNameLabel.text = selectedBookmark.name
     }
@@ -48,6 +50,8 @@ class WeatherDetailViewController: UIViewController {
             self.currentHumidityLabel.text = String(self.weatherAPI.currentForcast.humidity) + "%"
             self.currentRainChancesLabel.text = String(self.weatherAPI.currentForcast.rain) + " mm"
             self.currentWindInformationLabel.text = windDirection + " " + String(Int(self.weatherAPI.currentForcast.windSpeed)) + " mph"
+            self.activityView.isHidden = true
+            self.activityView.stopAnimating()
         }
     }
 
