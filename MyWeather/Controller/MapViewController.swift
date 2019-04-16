@@ -21,10 +21,7 @@ class MapViewController: UIViewController {
     //MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-//
         activityView.isHidden = true
-//        activityView.stopAnimating()
-
         activityView.style = .gray
     }
     
