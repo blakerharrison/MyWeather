@@ -10,7 +10,7 @@ import Foundation
 
 extension Int {
     
-    var degreesToWindDirection: String {
+    public var degreesToWindDirection: String {
         
         if self == 0 || self == 360 {
             return "N"
